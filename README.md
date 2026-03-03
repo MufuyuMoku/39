@@ -2,7 +2,7 @@
 
 A scrollytelling web experience that translates a static "Thank You" poster into a dynamic, emotional digital journey. Built as a tribute to the First Sound of the Future and the brilliant minds (Vocaloid-P) who gave her a soul.
 
-🌐 **[Live Demo: 39 Journey](#)**
+🌐 **[Live Demo: 39 Journey](https://mufuyumoku.github.io/39/)**
 
 ---
 
@@ -35,4 +35,5 @@ Connect with me across the static:
 * [Twitch](https://www.twitch.tv/mufuyumoku)
 
 ---
+
 *"When human words fall short, a synthesized voice lends its melody."*
