@@ -1,16 +1,13 @@
-/* Import Fonts: Playfair (Serif/Elegant), Noto Serif JP, Inter (Clean/Tech) */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Serif+JP:wght@400;700&family=Inter:wght@300;400;700&display=swap');
 
 :root {
-    /* Color Palette */
     --bg-paper: #f4efe8;
     --text-ink: #1a1a1a;
-    --bg-digital: #0a1114; /* Deep charcoal for digital mode */
+    --bg-digital: #0a1114; 
     --text-light: #e0e6ed;
     --cyan-miku: #39c5bb;
     --blue-crayon: #5b8bc2;
 
-    /* Fluid Typography - Scales smoothly across all screen sizes */
     --font-giant: clamp(10rem, 25vw, 22rem);
     --font-h1: clamp(4rem, 10vw, 7rem);
     --font-p: clamp(1.1rem, 2vw, 1.4rem);
@@ -26,13 +23,10 @@ body {
     background-color: var(--bg-paper);
     color: var(--text-ink);
     font-family: 'Playfair Display', serif;
-    overflow-x: hidden; /* Mencegah horizontal scroll bar bocor */
+    overflow-x: hidden;
     transition: background-color 1.2s ease, color 1.2s ease; 
 }
 
-/* =========================================
-   UI/UX OVERLAYS
-========================================= */
 .noise-overlay {
     position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
     pointer-events: none; z-index: 9999; opacity: 0.04;
@@ -47,18 +41,12 @@ body {
     z-index: 100; mix-blend-mode: difference; color: #fff;
 }
 
-/* =========================================
-   GLOBAL LAYOUTING
-========================================= */
 .act {
     min-height: 100vh; display: flex; justify-content: center; align-items: center;
     position: relative; padding: 2rem 5vw; width: 100%;
 }
 .center-content { text-align: center; max-width: 900px; width: 100%; z-index: 2; position: relative; }
 
-/* =========================================
-   ACT I: THE DEFINITION
-========================================= */
 .dict-container { max-width: 700px; width: 100%; margin: 0 auto; z-index: 2; position: relative; }
 .serif-title { font-size: var(--font-h1); font-weight: 700; line-height: 1.1; margin-bottom: 0.5rem; }
 .phonetic { font-family: 'Inter', sans-serif; font-size: 1.4rem; color: #555; margin-bottom: 4rem; letter-spacing: 1px; }
@@ -66,9 +54,6 @@ body {
 .definition { font-family: 'Inter', sans-serif; font-size: var(--font-p); line-height: 1.6; margin-bottom: 0.5rem; }
 .example { font-style: italic; color: #666; font-size: 1.1rem; margin-bottom: 3rem; }
 
-/* =========================================
-   ACT II: THE CHAOS & 39
-========================================= */
 .chaos-canvas {
     position: relative; display: flex; justify-content: center; align-items: center;
     width: 100vw; height: 100vh;
@@ -94,9 +79,6 @@ body {
 }
 .drawn-line { stroke: var(--blue-crayon); stroke-width: 3; fill: none; stroke-linecap: round; stroke-linejoin: round; }
 
-/* =========================================
-   ACT III: GOROAWASE
-========================================= */
 .sub-text { 
     font-family: 'Inter', sans-serif; font-size: 1.3rem; line-height: 1.8; 
     color: #555; margin-bottom: 1.5rem; transition: color 1s ease; 
@@ -104,46 +86,36 @@ body {
 .kanji-display { font-size: clamp(5rem, 12vw, 10rem); font-family: 'Noto Serif JP', serif; display: flex; gap: 4rem; justify-content: center; margin: 3rem 0; }
 .katakana-display { font-size: clamp(3rem, 6vw, 4rem); font-family: 'Noto Serif JP', sans-serif; letter-spacing: 1rem; margin-bottom: 4rem; }
 
-/* =========================================
-   ACT IV: DIGITAL RESONANCE
-========================================= */
 .miku-code { font-size: clamp(4rem, 10vw, 8rem); font-weight: 700; margin: 4rem 0; font-family: 'Playfair Display', serif; }
 .digit { color: var(--cyan-miku); text-shadow: 0 0 10px rgba(57, 197, 187, 0); transition: text-shadow 0.5s ease; }
 .phonetic-alt { font-size: clamp(2rem, 5vw, 3rem); color: #888; font-weight: 400; }
 .separator { color: #555; margin: 0 1rem; }
 .highlight-cyan { color: var(--cyan-miku) !important; font-weight: 700; }
 
-/* =========================================
-   ACT V: THE DEDICATION & CLOUD
-========================================= */
 #act-5 { 
-    overflow: hidden; /* Mengunci komen agar tidak meluber keluar dari Act 5 */
+    overflow: hidden; 
     position: relative;
 } 
 
 .dedication-cloud {
     position: absolute; top: 0; left: 0; width: 100vw; height: 100vh;
-    pointer-events: none; user-select: none; z-index: 0; /* Z-index 0 agar berada paling belakang */
+    pointer-events: none; user-select: none; z-index: 0;
 }
 .bg-comment {
     position: absolute; font-family: 'Inter', sans-serif; font-weight: 700;
-    /* Opacity akan dikontrol oleh JS nanti, tapi base colornya di-set di sini */
     color: rgba(255, 255, 255, 1); 
     white-space: nowrap; text-transform: uppercase; letter-spacing: 2px;
 }
 
 .dedication-box { 
     padding: 4rem; border-left: 3px solid rgba(57, 197, 187, 0.4); 
-    text-align: left; background: rgba(10, 17, 20, 0.7); /* Background blur agar teks tetap terbaca di atas komen */
+    text-align: left; background: rgba(10, 17, 20, 0.7); 
     backdrop-filter: blur(8px); z-index: 10;
 }
 .jp-text-glow { font-family: 'Noto Serif JP', serif; font-size: clamp(1.4rem, 3vw, 2rem); color: var(--text-light); margin-bottom: 0.8rem; letter-spacing: 2px; text-shadow: 0 0 10px rgba(255,255,255,0.2); }
 .spacer-line { width: 60px; height: 3px; background-color: var(--cyan-miku); margin: 2.5rem 0; box-shadow: 0 0 15px rgba(57, 197, 187, 0.6); }
 .title-caps { font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 2rem; color: #fff; }
 
-/* =========================================
-   ACT VI: EPILOGUE & QR CODE
-========================================= */
 .jp-closing { font-family: 'Noto Serif JP', serif; font-size: 1.5rem; margin-bottom: 1.5rem; color: #888; }
 .jp-closing-thanks { font-family: 'Noto Serif JP', serif; font-size: clamp(2.5rem, 6vw, 4rem); color: var(--cyan-miku); margin-bottom: 4rem; text-shadow: 0 0 20px rgba(57, 197, 187, 0.4); }
 
@@ -167,15 +139,13 @@ body {
     position: relative; cursor: pointer; transition: all 0.3s ease;
 }
 
-/* Memastikan gambar QR Code pas di dalam kotak */
 .qr-image {
     width: 85%;
     height: 85%;
     object-fit: contain;
-    mix-blend-mode: screen; /* Membuatnya menyatu sempurna dengan background */
+    mix-blend-mode: screen; 
 }
 
-/* Ornamen sudut kotak ala Cyber/Tech */
 .qr-box::before, .qr-box::after {
     content: ''; position: absolute; width: 25px; height: 25px;
     border-color: var(--cyan-miku); border-style: solid;
@@ -190,35 +160,29 @@ body {
 }
 .qr-link-wrapper:hover .qr-box::before,
 .qr-link-wrapper:hover .qr-box::after {
-    width: 35px; height: 35px; /* Sudutnya memanjang saat di-hover */
+    width: 35px; height: 35px; 
 }
 
 .qr-scan-text {
     font-family: 'Inter', sans-serif; font-size: 0.9rem; letter-spacing: 4px; color: var(--cyan-miku); font-weight: 700;
 }
 
-/* =========================================
-   MOBILE RESPONSIVENESS (ANDROID / iOS)
-========================================= */
 @media screen and (max-width: 768px) {
-    /* 1. Modifikasi Variabel Root untuk HP */
     :root {
-        --font-giant: clamp(7rem, 30vw, 12rem); /* Angka 39 diperkecil agar tidak out of bounds */
+        --font-giant: clamp(7rem, 30vw, 12rem); 
         --font-h1: clamp(3rem, 10vw, 4.5rem);
         --font-p: clamp(1rem, 3vw, 1.2rem);
     }
 
-    /* 2. Navigasi Atas */
     .fixed-nav {
         top: 1.5rem; left: 1.5rem; right: 1.5rem;
         font-size: 0.7rem;
         letter-spacing: 1px;
     }
 
-    /* 3. Perbaikan Kanvas Crayon & Posisi Teks Jepang di Act 2 */
     .crayon-wrapper {
         width: 100vw; 
-        height: 100vw; /* Memaksa aspect ratio 1:1 mengikuti lebar layar */
+        height: 100vw; 
         max-width: 450px; 
         max-height: 450px;
     }
@@ -227,34 +191,28 @@ body {
         font-size: 1.1rem;
         letter-spacing: 0.3rem;
     }
-    .jp-left { left: 2%; top: 10%; } /* Digeser lebih ke pinggir */
+    .jp-left { left: 2%; top: 10%; } 
     .jp-right { right: 2%; bottom: 10%; }
 
-    /* 4. Penyesuaian Ruang Teks agar tidak bertumpuk */
     .kanji-display { gap: 1.5rem; }
     .katakana-display { letter-spacing: 0.5rem; }
     .miku-code { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; }
     .separator { margin: 0 0.5rem; }
 
-    /* 5. Mengurangi Padding di Kotak Dedikasi Act 5 */
     .dedication-box { 
         padding: 2rem 1.5rem; 
         border-left-width: 2px;
-        background: rgba(10, 17, 20, 0.85); /* Dibuat sedikit lebih gelap agar teks kontras dengan komen di HP */
+        background: rgba(10, 17, 20, 0.85); 
     }
 
-    /* 6. Penyesuaian QR Box */
     .qr-box {
         width: 220px;
         height: 220px;
     }
 }
 
-/* =========================================
-   FIX UNTUK BROWSER MOBILE (ADDRESS BAR JUMP)
-========================================= */
-/* Mencegah layar lompat saat address bar Android (Chrome) bersembunyi saat di-scroll */
 .act {
     min-height: 100vh;
     min-height: 100dvh; /* dvh = dynamic viewport height, penyelamat untuk UI Mobile */
+
 }
