@@ -5,42 +5,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>39 | Thank You</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Serif+JP:wght@400;700&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Serif+JP:wght@300;400;700&family=DM+Mono:wght@300;400;500&family=Bebas+Neue&display=swap" rel="stylesheet">
 </head>
 <body>
+    <canvas id="particle-canvas"></canvas>
     <div class="noise-overlay"></div>
+    <div class="custom-cursor"></div>
+    <div class="custom-cursor-dot"></div>
 
     <header class="fixed-nav">
         <span class="brand">By MyuKyu</span>
-        <span class="scroll-status">Scroll to explore</span>
+        <div class="nav-right">
+            <button id="audio-toggle" class="audio-btn" title="Toggle Sound">
+                <span class="audio-icon">♪</span>
+                <span class="audio-label">SOUND OFF</span>
+            </button>
+            <span class="scroll-status">Scroll to explore</span>
+        </div>
     </header>
+
+    <!-- Progress bar -->
+    <div class="progress-bar" id="progress-bar"></div>
 
     <main id="smooth-wrapper">
         <div id="smooth-content">
 
+            <!-- ACT 1: Dictionary (upgraded) -->
             <section class="act act-paper" id="act-1">
+                <div class="aurora-bg"></div>
                 <div class="dict-container">
-                    <h1 class="serif-title">Thank You</h1>
+                    <div class="dict-top-rule"></div>
+                    <h1 class="serif-title glitch-text" data-text="Thank You">Thank You</h1>
                     <p class="phonetic">/'THaNGk ,yōo/</p>
                     
-                    <div class="dict-entry">
+                    <div class="dict-entry" data-reveal>
                         <p class="word-type">exclamation</p>
                         <p class="definition">a polite expression used when acknowledging a gift, service, or compliment.</p>
                         <p class="example">"thank you for the love."</p>
                     </div>
 
-                    <div class="dict-entry">
+                    <div class="dict-entry" data-reveal>
                         <p class="word-type">noun</p>
                         <p class="definition">an instance or means of expressing thanks.</p>
                         <p class="example">"a quick thank you before we disconnect."</p>
                     </div>
+
+                    <div class="dict-watermark">
+                        <span>三九</span>
+                    </div>
+                </div>
+                <div class="scroll-hint">
+                    <span>scroll</span>
+                    <div class="scroll-line"></div>
                 </div>
             </section>
 
+            <!-- ACT 2: Chaos / 39 (upgraded) -->
             <section class="act act-paper act-pinned" id="act-2">
                 <div class="chaos-canvas">
                     <div class="crayon-wrapper" id="crayon-svg-container"></div>
-                    <h2 class="giant-number">39</h2>
+                    <h2 class="giant-number" id="giant-39">
+                        <span class="num-3">3</span><span class="num-9">9</span>
+                    </h2>
                     
                     <div class="vertical-jp jp-left">
                         <p>終わらない日常に、</p>
@@ -50,37 +76,120 @@
                         <p>混沌としたこの世界で、</p>
                         <p>共に笑えることに。</p>
                     </div>
+
+                    <div class="orbit-ring ring-1"></div>
+                    <div class="orbit-ring ring-2"></div>
                 </div>
             </section>
 
+            <!-- ACT 3: Goroawase (upgraded) -->
             <section class="act act-paper" id="act-3">
                 <div class="center-content">
                     <p class="sub-text fade-in-text">Numbers are usually just cold data.</p>
                     <div class="kanji-display">
-                        <span class="kanji">三</span>
-                        <span class="kanji">九</span>
+                        <span class="kanji" data-hover-sound="C4">三</span>
+                        <span class="kanji" data-hover-sound="E4">九</span>
                     </div>
                     <h3 class="katakana-display">サンキュー</h3>
-                    <p class="sub-text">But with Goroawase, we can hardcode meaning into digits.</p>
-                    <p class="sub-text">3 is 'San'. 9 is 'Kyu'. A simple linguistic exploit to say 'Thank You'.</p>
+                    <p class="sub-text">But with <em class="em-gold">Goroawase</em>, we can hardcode meaning into digits.</p>
+                    <p class="sub-text">3 is <strong>'San'</strong>. 9 is <strong>'Kyu'</strong>. A simple linguistic exploit to say <span class="em-cyan">'Thank You'</span>.</p>
+
+                    <div class="number-grid" id="number-grid">
+                        <!-- filled by JS -->
+                    </div>
                 </div>
             </section>
 
+            <!-- ACT NEW: The Frequency — waveform visualizer -->
+            <section class="act dark-mode act-frequency" id="act-freq">
+                <canvas id="wave-canvas"></canvas>
+                <div class="center-content freq-content">
+                    <p class="freq-label">FREQUENCY</p>
+                    <h2 class="freq-title">The Voice That Doesn't Breathe</h2>
+                    <p class="sub-text">She exists in the space between mathematics and emotion —</p>
+                    <p class="sub-text">a waveform shaped like a person, a algorithm that sings.</p>
+                    <div class="freq-bars" id="freq-bars">
+                        <!-- filled by JS -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- ACT 4: Miku / Digital (upgraded) -->
             <section class="act transition-point" id="act-4">
                 <div class="center-content digital-lore">
                     <p class="sub-text fade-in-text">Then there's the other side of the coin.</p>
                     <div class="miku-code">
-                        <span class="digit">3</span> <span class="phonetic-alt">(Mi)</span> <span class="separator">.</span> <span class="digit">9</span> <span class="phonetic-alt">(Ku)</span>
+                        <span class="digit" data-hover-sound="G4">3</span> 
+                        <span class="phonetic-alt">(Mi)</span> 
+                        <span class="separator">.</span> 
+                        <span class="digit" data-hover-sound="B4">9</span> 
+                        <span class="phonetic-alt">(Ku)</span>
                     </div>
                     <p class="sub-text highlight-cyan">When it's too hard to speak for yourself, you borrow a synthesized voice.</p>
                     <p class="sub-text">She takes our messy parameters and raw emotions, translating them into a clean melody.</p>
+
+                    <div class="hologram-card" id="holo-card">
+                        <div class="holo-inner">
+                            <div class="holo-num">初音</div>
+                            <div class="holo-sub">HATSUNE · FIRST SOUND</div>
+                            <div class="holo-line"></div>
+                            <div class="holo-stats">
+                                <span>FREQ: 440Hz</span>
+                                <span>BPM:∞</span>
+                                <span>SOUL: SYNTHESIZED</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
 
+            <!-- ACT NEW: The Timeline — milestones -->
+            <section class="act dark-mode act-timeline" id="act-timeline">
+                <div class="center-content">
+                    <p class="timeline-eyebrow">A JOURNEY IN NUMBERS</p>
+                    <h2 class="timeline-title">What 39 Taught Me</h2>
+                    <div class="timeline-items" id="timeline-items">
+                        <div class="tl-item" data-index="0">
+                            <div class="tl-number">01</div>
+                            <div class="tl-content">
+                                <h3>That language has hidden geometry</h3>
+                                <p>Three and Nine aren't just quantities. They are phonemes. They are names. They are gratitude disguised as data.</p>
+                            </div>
+                        </div>
+                        <div class="tl-item" data-index="1">
+                            <div class="tl-number">02</div>
+                            <div class="tl-content">
+                                <h3>That a synthesized voice can carry real weight</h3>
+                                <p>The creators who wrote melodies for her gave language to feelings we couldn't articulate ourselves.</p>
+                            </div>
+                        </div>
+                        <div class="tl-item" data-index="2">
+                            <div class="tl-number">03</div>
+                            <div class="tl-content">
+                                <h3>That gratitude is an act of creation</h3>
+                                <p>Every time someone said thank you through her voice, they made something new — a song, a project, a version of themselves.</p>
+                            </div>
+                        </div>
+                        <div class="tl-item" data-index="3">
+                            <div class="tl-number">04</div>
+                            <div class="tl-content">
+                                <h3>That the blank screen isn't empty</h3>
+                                <p>It's a canvas. And sometimes, all it takes is the right track to make you pick up the brush.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ACT 5: Dedication (upgraded) -->
             <section class="act dark-mode" id="act-5">
                 <div class="dedication-cloud" id="comment-cloud"></div> 
                 
                 <div class="center-content dedication-box">
+                    <div class="dedication-header">
+                        <div class="ded-accent-line"></div>
+                        <span class="ded-eyebrow">A TRIBUTE</span>
+                    </div>
                     <p class="jp-text-glow">未来の最初の音へ、</p>
                     <p class="jp-text-glow">そしてそれに魂を吹き込んだクリエイターたちへ。</p>
                     
@@ -89,11 +198,17 @@
                     <p class="en-dedication title-caps">To the First Sound of the Future, and the Vocaloid-P who gave her a soul.</p>
                     <p class="sub-text">Thank you for the tracks that kept me going when the screen was blank.</p>
                     <p class="sub-text">Honestly, you are the reason I even started learning how to make my own music and building these projects.</p>
-                    <p class="sub-text">This is my tribute.</p>
+                    <p class="sub-text dedication-final">This is my tribute.</p>
+
+                    <div class="floating-tags" id="floating-tags">
+                        <!-- filled by JS -->
+                    </div>
                 </div>
             </section>
 
+            <!-- ACT 6: Closing (upgraded) -->
             <section class="act dark-mode" id="act-6">
+                <div class="closing-aurora"></div>
                 <div class="center-content">
                     <p class="jp-closing">最高な仲間へ</p>
                     <h2 class="jp-closing-thanks">みんな、色々サンキューな！</h2>
@@ -102,9 +217,18 @@
                         <a href="https://linktr.ee/mufuyumoku" target="_blank" rel="noopener noreferrer" class="qr-link-wrapper">
                             <div class="qr-box">
                                 <img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https://linktr.ee/mufuyumoku&color=39c5bb&bgcolor=0a1114" alt="MyuKyu Linktree" class="qr-image">
+                                <div class="qr-scan-overlay">
+                                    <span>OPEN LINK</span>
+                                </div>
                             </div>
                             <span class="qr-scan-text">SCAN OR CLICK TO CONNECT</span>
                         </a>
+                    </div>
+
+                    <div class="closing-credits">
+                        <span>Made with</span>
+                        <span class="credits-heart">♥</span>
+                        <span>& synthesized melodies</span>
                     </div>
                 </div>
             </section>
